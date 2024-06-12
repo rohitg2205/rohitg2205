@@ -1,0 +1,88 @@
+Practical No. 2
+
+Aim - study of advanced linux shell command process management, Network management and memory management
+
+Process management :
+
+1. $ top - Top command displays a list of processes that are running in real-time along with their memory and CPU usage.
+
+2. $ ps - ps command is short for ‘Process Status’. It displays the currently-running processes. However, unlike the top command, the output generated is not in realtime.
+PID	process ID
+TTY	terminal type
+TIME	total time the process has been running
+CMD	name of the command that launches the process
+
+3. $ pstree - pstree is a Linux command that shows the running processes as a tree.
+
+4. $ kill [pid]- used to send a signal to a process, typically to terminate it. You can use it by specifying the Process ID (PID) of the process you want to terminate, like this: kill 1234
+
+
+Memory management :
+
+1. $ vmstat - The vmstat command (short for virtual memory statistics) is a built-in monitoring utility in Linux. The command is used to obtain information about memory, system processes, paging, interrupts, block I/O, disk, and CPU scheduling.
+The detailed description listed below provides an explanation for each value in case you need assistance in analyzing the results.
+Procs
+r: number of processes waiting for run time.
+b: number of processes in uninterruptible sleep.
+
+Memory
+swpd: amount of virtual memory used.
+free: amount of idle memory.
+buff: the amount of memory used as buffers.
+cache: amount of memory used as cache.
+
+Swap
+si: memory swapped in from disk (/s).
+so: memory swapped to disk (/s).
+
+IO
+bi: Blocks received from a block device (blocks/s).
+bo: Blocks sent to a block device (blocks/s).
+
+System
+in: number of interrupts per second, including the clock.
+cs: number of context switches per second.
+
+CPU – These are percentages of total CPU time.
+us: Time spent running non-kernel code. (user time, including nice time)
+sy: Time spent running kernel code. (system time)
+id: Time spent idle. Before Linux 2.5.41, this includes IO-wait time.
+wa: Time spent waiting for IO. Before Linux 2.5.41, included in idle.
+st: Time stolen from a virtual machine. Before Linux 2.6.11, unknown.
+
+2. $ free - The data represents the used/available memory and the swap memory figures in kilobytes.
+
+total		Total installed memory
+used		Memory currently in use by running processes (used= total – free – buff/cache)
+free		Unused memory (free= total – used – buff/cache)
+shared		Memory shared by multiple processes
+buffers		Memory reserved by the OS to allocate as buffers when process need them
+cached		Recently used files stored in RAM
+buff/cache	Buffers + Cache
+available	Estimation of how much memory is available for starting new applications, without swapping.
+
+3. $ cat /proc/meminfo - This command opens the /proc/meminfo file, which provides real-time information about memory usage, buffers, and shared memory used by the kernel.
+
+Total installed memory: 8,848,000 KB
+Used memory by running processes: 6,000,000 KB
+Unused memory: 2,000,000 KB
+Buffers + Cache available: 3,000,000 KB
+
+4. $ pmap [pid] - Use the Performance Management Appraisal Program (PMAP) command to explore how a process is mapped in memory to monitor or troubleshoot memory usage.
+
+5. $ cat - The cat command on Linux concatenates files together. It's often used to concatenate one file to nothing to print the single file's contents to the terminal. This is a quick way to preview the contents of a text file without having to open the file in a large application.
+
+Network management :
+
+1. $ nslookup - You can use nslookup to find the IP address associated with a domain name. For example:
+$ nslookup example.com
+It will return the IP address of the domain.
+
+2. $ netstat - Netstat is a command line utility to display all the network connections on a system. It displays all the tcp, udp and unix socket connections.
+
+3. $ traceroute [domain] -  prints the route that a packet takes to reach the host. This command is useful when you want to know about the route and about all the hops that a packet takes.
+
+4. $ ss - The ss command (Socket Statistics) provides detailed information about network sockets. It displays active connections, listening ports, and other socket-related data.
+
+5. $ hostname - displays the hostname
+
