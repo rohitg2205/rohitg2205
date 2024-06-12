@@ -1,0 +1,79 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+#define NUM_FRAMES 3
+#define NUM_PAGES 10
+
+int frames[NUM_FRAMES];
+int pageQueue[NUM_PAGES];
+int rear = -1;
+
+void enqueue(int page) {
+    if (rear == NUM_PAGES - 1) {
+        printf("Queue is full!\n");
+        return;
+    }
+    pageQueue[++rear] = page;
+}
+
+int dequeue() {
+    if (rear == -1) {
+        printf("Queue is empty!\n");
+        return -1;
+    }
+    int page = pageQueue[0];
+    for (int i = 0; i < rear; i++) {
+        pageQueue[i] = pageQueue[i + 1];
+    }
+    rear--;
+    return page;
+}
+
+bool isInFrame(int page) {
+    for (int i = 0; i < NUM_FRAMES; i++) {
+        if (frames[i] == page) {
+            return true;
+        }
+    }
+    return false;
+}
+
+void displayFrames() {
+    printf("Current Frames: ");
+    for (int i = 0; i < NUM_FRAMES; i++) {
+        printf("%d ", frames[i]);
+    }
+    printf("\n");
+}
+
+void FIFO(int pages[], int numPages) {
+    int pageFaults = 0;
+    int nextFrame = 0;
+
+    for (int i = 0; i < numPages; i++) {
+        if (!isInFrame(pages[i])) {
+            int replacedPage = frames[nextFrame];
+            frames[nextFrame] = pages[i];
+            nextFrame = (nextFrame + 1) % NUM_FRAMES;
+            enqueue(pages[i]);
+            pageFaults++;
+
+            printf("Page %d is replaced by page %d.\n", replacedPage, pages[i]);
+            displayFrames();
+        }
+    }
+
+    printf("Total page faults: %d\n", pageFaults);
+}
+
+int main() {
+    int pages[NUM_PAGES] = {1, 2, 3, 4, 1, 2, 5, 1, 2, 3};
+    printf("Page reference sequence: ");
+    for (int i = 0; i < NUM_PAGES; i++) {
+        printf("%d ", pages[i]);
+    }
+    printf("\n");
+
+    FIFO(pages, NUM_PAGES);
+    return 0;
+}
