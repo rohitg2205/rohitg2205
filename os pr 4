@@ -1,0 +1,144 @@
+#include<stdio.h>
+ #include<pthread.h> 
+#include<stdlib.h> 
+#include<unistd.h>
+ #define n 10
+ int matrix1[n][n], matrix2[n][n];
+ int size,i,j;
+ void takeinput(int matrix[size][size], int size){
+ for(i = 0; i<size; i++){
+ for(j= 0; j<size; j++){
+ printf("\nEnter value for matrix[%d][%d] : ", i, j);
+ scanf("%d", &matrix[i][j]);
+ }
+ }
+ }
+ void printmatrix(void *args){
+ printf("\n----Matrix 1----\n");
+ for(i = 0; i<size; i++){
+ for(j= 0; j<size; j++){
+ }
+ printf("%d\t", matrix1[i][j]);
+ printf("\n");
+ }
+ printf("\n----Matrix 2----\n");
+ 1
+sleep(1);
+ for(i = 0; i<size; i++){
+ for(j= 0; j<size; j++){
+ printf("%d\t", matrix2[i][j]);
+ }
+ printf("\n");
+ }
+ }
+ void multiplymatrix(int matrix1[size][size], int matrix2[size][size], int size){
+ for(i = 0; i<size; i++){
+ for(j= 0; j<size; j++){
+ printf("%d\t", matrix1[i][j] * matrix2[i][j]);
+ }
+ printf("\n");
+ }
+ printf("\n");
+ }
+ int main(){
+ pthread_t thread_id;
+ printf("enter no of rows and columns : ");
+ scanf("%d", &size);
+ printf("\nEnter values for 1st matrix");
+ takeinput(matrix1, size);
+ printf("\nEnter values for 2nd matrix");
+ 2
+takeinput(matrix2, size);
+ pthread_create(&thread_id, NULL, &printmatrix, NULL);
+ //
+ }
+ output
+ printmatrix(NULL);
+ if(pthread_equal(thread_id, pthread_self())) 
+printf("Threads are equal-----\n"); 
+else
+ printf("Threads are not equal-----\n"); 
+printf("\n----Multiplication of Matrix----\n");
+ multiplymatrix(matrix1, matrix2, size);
+ pthread_join(thread_id, NULL); 
+return 0;
+ enter no of rows and columns : 2
+ Enter values for 1st matrix
+ Enter value for matrix[0][0] : 1
+ Enter value for matrix[0][1] : 2
+ Enter value for matrix[1][0] : 3
+ Enter value for matrix[1][1] : 4
+ 3
+Enter values for 2nd matrix
+ Enter value for matrix[0][0] : 1
+ Enter value for matrix[0][1] : 2
+ Enter value for matrix[1][0] : 3
+ Enter value for matrix[1][1] : 4----Matrix 1---
+1       
+0       
+2
+ 0----Matrix 2---
+Threads are not equal---------Multiplication of Matrix---
+1       
+9       
+1       
+0       
+4
+ 16
+ 2
+ 0
+ 4
+
+********************************************************************************
+
+
+#include<stdio.h>
+#define n 10
+
+int matrix1[n][n], matrix2[n][n];
+int size,i,j;
+
+void takeinput(int matrix[size][size], int size){
+	for(i = 0; i<size; i++){
+		for(j= 0; j<size; j++){
+			printf("\nEnter value for matrix[%d][%d] : ", i, j);
+			scanf("%d", &matrix[i][j]);
+		}
+	}
+}
+void printmatrix(int matrix[size][size], int size){
+	for(i = 0; i<size; i++){
+		for(j= 0; j<size; j++){
+			printf("%d\t", matrix[i][j]);
+		}
+		printf("\n");
+	}
+}
+
+void multiplymatrix(int matrix1[size][size], int matrix2[size][size], int size){
+	for(i = 0; i<size; i++){
+		for(j= 0; j<size; j++){
+			printf("%d\t", matrix1[i][j] * matrix2[i][j]);
+		}
+	}
+}
+int main(){
+	
+	printf("enter no of rows and columns : ");
+	scanf("%d", &size);
+	
+	printf("\nEnter values for 1st matrix");
+	takeinput(matrix1, size);
+	printf("\nEnter values for 2nd matrix");
+	takeinput(matrix2, size);
+	
+	printf("\n----Matrix 1----\n");
+	printmatrix(matrix1, size);
+	
+	printf("\n----Matrix 2----\n");
+	printmatrix(matrix2, size);
+	
+	printf("\n----Multiplication of Matrix----\n");
+	multiplymatrix(matrix1, matrix2, size);
+	return 0;
+}
