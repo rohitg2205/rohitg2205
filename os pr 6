@@ -1,0 +1,40 @@
+6 wap to perform ipc using shared memory or pipes or msg queues
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+ #include <sys/shm.h>
+ #include <sys/wait.h>
+ #include <unistd.h>
+ int main() {
+    key_t key = ftok("shared_memory_example", 65);
+    int shmid = shmget(key, 1024, 0666|IPC_CREAT);
+    char *shm = (char*) shmat(shmid, (void*)0, 0);
+    pid_t pid = fork();
+    if (pid < 0) { 
+        perror("Fork failed");
+        exit(1);
+    } else if (pid == 0) { 
+        printf("Consumer process started...\n");
+        while (strlen(shm) == 0) {
+            usleep(1000); 
+        }
+ printf("%p\n", shm);
+        printf("Consumer: %s\n", shm);
+    } else { 
+        printf("Producer process started...\n");
+ printf("%p\n", shm);
+        sprintf(shm, "from the producer!");
+        wait(NULL);
+        printf("Producer process finished.\n");
+    }
+    shmdt(shm);
+    shmctl(shmid, IPC_RMID, NULL);
+    return 0;
+ }
+ o/p
+ Producer process started...
+ 0x7fb232d0e000
+ Consumer process started...
+ 0x7fb232d0e000
+ Consumer: from the producer!
+ Producer process finished.
