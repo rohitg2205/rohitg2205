@@ -1,0 +1,96 @@
+#include <stdio.h>
+#include <stdbool.h>
+
+#define MAX_PROCESSES 10
+#define MAX_RESOURCES 10
+
+int available[MAX_RESOURCES];
+int maximum[MAX_PROCESSES][MAX_RESOURCES];
+int allocation[MAX_PROCESSES][MAX_RESOURCES];
+int need[MAX_PROCESSES][MAX_RESOURCES];
+bool finish[MAX_PROCESSES];
+
+int num_processes, num_resources;
+
+void initialize() {
+    printf("Enter the number of processes: ");
+    scanf("%d", &num_processes);
+
+    printf("Enter the number of resources: ");
+    scanf("%d", &num_resources);
+
+    printf("Enter the available resources:\n");
+    for (int i = 0; i < num_resources; i++) {
+        scanf("%d", &available[i]);
+    }
+
+    printf("Enter the maximum resources for each process:\n");
+    for (int i = 0; i < num_processes; i++) {
+        printf("For process %d: ", i);
+        for (int j = 0; j < num_resources; j++) {
+            scanf("%d", &maximum[i][j]);
+        }
+    }
+
+    printf("Enter the allocation for each process:\n");
+    for (int i = 0; i < num_processes; i++) {
+        printf("For process %d: ", i);
+        for (int j = 0; j < num_resources; j++) {
+            scanf("%d", &allocation[i][j]);
+            need[i][j] = maximum[i][j] - allocation[i][j];
+        }
+    }
+}
+
+bool isSafe(int process, int work[]) {
+    for (int i = 0; i < num_resources; i++) {
+        if (need[process][i] > work[i])
+            return false;
+    }
+    return true;
+}
+
+bool bankerAlgorithm() {
+    int work[MAX_RESOURCES];
+    for (int i = 0; i < num_resources; i++) {
+        work[i] = available[i];
+    }
+
+    for (int i = 0; i < num_processes; i++) {
+        finish[i] = false;
+    }
+
+    int safeSequence[num_processes];
+    int count = 0;
+
+    while (count < num_processes) {
+        bool found = false;
+        for (int i = 0; i < num_processes; i++) {
+            if (!finish[i] && isSafe(i, work)) {
+                for (int j = 0; j < num_resources; j++) {
+                    work[j] += allocation[i][j];
+                }
+                safeSequence[count++] = i;
+                finish[i] = true;
+                found = true;
+            }
+        }
+        if (!found) {
+            printf("System is not in safe state!\n");
+            return false;
+        }
+    }
+
+    printf("System is in safe state.\nSafe sequence: ");
+    for (int i = 0; i < num_processes; i++) {
+        printf("%d ", safeSequence[i]);
+    }
+    printf("\n");
+    return true;
+}
+
+int main() {
+    initialize();
+    bankerAlgorithm();
+    return 0;
+}
