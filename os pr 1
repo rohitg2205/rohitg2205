@@ -1,0 +1,53 @@
+task manager 
+It provides information about computer performance and running  software, including name of running processes, 
+CPU and GPU load, commit charge, I/O details, logged-in users, and Windows services. 
+Task Manager can also be used to set process priorities, processor affinity, start and stop services, and forcibly 
+terminate processes. 
+the Task List application, are capable of listing currently running processes and killing them, or creating new 
+processes. 
+Details tab--------------------------------- 
+The Details tab is a more basic version of the Processes tab, and acts similar to the Processes tab in Windows 7 and 
+earlier.  
+It has a more rudimentary user experience and can perform some additional actions.  
+Right-clicking a process in the list allows changing the priority the process has 
+Processes tab------------------------------- 
+The Processes tab shows a list of all running processes on the system. This list includes Windows Services and 
+processes from other accounts. The Delete key can also be used to terminate processes on the Processes tab. By 
+default, the processes tab shows the user account the process is running under, the amount of CPU, and the amount 
+of memory the process is currently consuming. There are more columns that can be shown.  
+The Processes tab divides the process into three categories: 
+Apps: Programs with a main window 
+Windows processes: Components of Windows itself that do not have a main window, including services 
+Background process: Programs that do not have a main window, including services, and are not part of the Windows 
+itself. 
+This tab shows the name of every main window and every service associated with each process. Both a graceful exit 
+command and a termination command can be sent from this tab, depending on whether the command is sent to the 
+process or its window 
+Performance tab----------------------------- 
+The Performance tab shows overall statistics about the system's performance, most notably the overall amount of 
+CPU usage and how much memory is being used. A chart of recent usage for both of these values is shown. Details 
+about specific areas of memory are also shown. 
+There is an option to break the CPU usage graph into two sections: kernel mode time and user mode time. Many 
+device drivers, and core parts of the operating system run in kernel mode, whereas user applications run in user 
+mode. This option can be turned on by choosing Show kernel times from the View menu. When this option is turned 
+on the CPU usage graph will show a green and a red area. The red area is the amount of time spent in kernel mode, 
+and the green area shows the amount of time spent in user mode. 
+The Performance tab also shows statistics relating to each of the network adapters present in the computer. 
+App history------------------------------------- 
+The App history tab shows resource usage information about Universal Windows Platform apps. Windows controls 
+the life cycle of these apps more tightly. This tab is where the data that Windows has collected about them, and then 
+be viewed at a later time. 
+Startup--------------------------------------------- 
+The Startup tab manages software that starts with Windows shell. 
+Users--------------------------------------- 
+The Users tab shows all users that currently have a session on the computer. On server computers, there may be 
+several users connected to the computer using Terminal Services. 
+Weakness--------------------- 
+Task Manager is a common target of computer viruses and other forms of malware; typically malware will close the 
+Task Manager as soon as it is started, so as to hide itself from users. Some malware will also disable task manager as 
+an administrator.  
+Variants of the Zotob and Spybot worms have used this technique,for example.[15][obsolete source] Using Group 
+Policy, it is possible to disable the Task Manager. Many types of malware also enable this policy setting in the 
+registry.  
+Rootkits can prevent themselves from getting listed in the Task Manager, thereby preventing their detection and 
+termination using it. 
