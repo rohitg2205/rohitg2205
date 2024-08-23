@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Cards</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="card-container">
+        <div class="card">
+            <h2>Learn HTML</h2>
+            <p>Master the basics of HTML, the essential language for creating web pages.</p>
+            <button>Start Learning</button>
+        </div>
+
+        <div class="card">
+            <h2>Learn CSS</h2>
+            <p>Discover the power of CSS to style and layout web pages.</p>
+            <button>Start Learning</button>
+        </div>
+
+        <div class="card">
+            <h2>Learn PHP</h2>
+            <p>Get started with PHP, a popular scripting language for creating dynamic websites.</p>
+            <button>Start Learning</button>
+        </div>
+    </div>
+</body>
+</html>
+css----
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.card-container {
+    display: flex;
+    gap: 20px;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+}
+
+.card h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card p {
+    font-size: 1em;
+    margin-bottom: 15px;
+    color: #666;
+}
+
+.card button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.card button:hover {
+    background-color: #0056b3;
+}
